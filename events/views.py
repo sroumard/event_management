@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import CustomUser
-from .forms import SignUpForm
+from .forms import EventForm, SignUpForm
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -61,3 +61,16 @@ def logout_view (request) :
 @login_required
 def home(request):
     return render(request, 'home.html', {'user': request.user})
+
+@login_required
+def create_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.organizer = request.user  # Associe l'utilisateur connecté comme organisateur
+            event.save()
+            return redirect('home')  # Redirige après création
+    else:
+        form = EventForm()
+    return render(request, 'create_event.html', {'form': form})

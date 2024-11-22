@@ -7,4 +7,5 @@ urlpatterns = [
     path('login/', views.login_view, name ="login"),
     path('logout/', views.logout_view, name='logout'),  # Nouvelle route pour la déconnexion
     path('home/', views.home, name='home'), 
+    path('events/create/', views.create_event, name='create_event')
 ]
