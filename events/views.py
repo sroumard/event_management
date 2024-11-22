@@ -57,3 +57,7 @@ def logout_view (request) :
     logout(request)
     messages.success(request,'Vous etes deconnectés')
     return redirect('login')
+
+@login_required
+def home(request):
+    return render(request, 'home.html', {'user': request.user})
