@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Liste des Événements</title>
-</head>
+<!-- templates/events/event_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+Liste des événements
+{% endblock %}
+
+{% block content %}
 <body>
     <h1>Liste des Événements</h1>
 
@@ -45,4 +48,4 @@
         </tbody>
     </table>
 </body>
-</html>
+{% endblock %}

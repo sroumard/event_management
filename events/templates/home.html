@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}
+Accueil
+{% endblock %}
+
+{% block content %}>
 <body>
     <h1>Bienvenue, {{ user.username }} !</h1>
     <p>Vous êtes connecté.</p>
     <a href="{% url 'logout' %}">Se déconnecter</a>
 </body>
-</html>
+{% endblock %}

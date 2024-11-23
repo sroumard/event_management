@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title> Connexion</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}
+Page de connection
+{% endblock %}
+
+{% block content %}>
 <body>
     <h2>Connexion</h2>
     <form method = "post">
@@ -17,4 +17,4 @@
     </form>
     <p>Pas encore de compte ? <a href="{% url 'signup' %}">Inscrivez vous ici</a></p>
 </body> 
-</html>
+{% endblock %}

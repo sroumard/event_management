@@ -1,8 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Delete Event</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}
+Supprimer un evenement
+{% endblock %}
+
+{% block content %}>
 <body>
     <h1>Are you sure you want to delete "{{ event.title }}"?</h1>
     <form method="post">
@@ -11,4 +13,4 @@
     </form>
     <a href="{% url 'event_list' %}">Cancel</a>
 </body>
-</html>
+{% endblock %}
