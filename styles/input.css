@@ -1,0 +1,6 @@
+/* input.css */
+
+/* Importer les directives de base, composants et utilitaires de TailwindCSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Accueil
-{% endblock %}
+{% block title %}Accueil{% endblock %}
 
-{% block content %}>
-<body>
-    <h1>Bienvenue, {{ user.username }} !</h1>
-    <p>Vous êtes connecté.</p>
-    <a href="{% url 'logout' %}">Se déconnecter</a>
-</body>
+{% block content %}
+<div class="text-center mt-10">
+  <h1 class="text-4xl font-bold mb-4">Bienvenue sur Mon Application</h1>
+  <p class="text-lg text-gray-600 mb-6">Organisez vos événements et restez connecté avec facilité.</p>
+  <a href="{% url 'signup' %}" class="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+    Commencer maintenant
+  </a>
+</div>
 {% endblock %}

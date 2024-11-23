@@ -10,24 +10,23 @@
   <link href="{% static 'css/output.css' %}" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-900">
-  <header>
-    <nav>
-      <ul>
-        <li><a href="{% url 'home' %}">Accueil</a></li>
-        <li><a href="{% url 'signup' %}">S'inscrire</a></li>
-        <li><a href="{% url 'login' %}">Se connecter</a></li>
-        <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+  <header  class="bg-blue-600 text-white p-4">
+    <nav class="container mx-auto flex justify-between items-center">
+      <ul class="flex space-x-4">
+        <li><a href="{% url 'home' %}" class="hover:underline">Accueil</a></li>
+        <li><a href="{% url 'signup' %}" class="hover:underline">S'inscrire</a></li>
+        <li><a href="{% url 'login' %}" class="hover:underline">Se connecter</a></li>
+        <li><a href="{% url 'logout' %}" class="hover:underline">Se déconnecter</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main class="container mx-auto p-4">
     {% block content %}
-    <!-- Contenu spécifique aux pages qui héritent de base.html -->
     {% endblock %}
   </main>
 
-  <footer>
+  <footer class="bg-gray-800 text-white text-center py-4 mt-8">
     <p>&copy; 2024 Mon Application</p>
   </footer>
 </body>
