@@ -14,11 +14,12 @@ body {
     font-size: 14px;
     letter-spacing: 0.5px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;    /* Centre verticalement */
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    overflow-x: hidden;
 }
 
 /* Smooth scrolling */
@@ -26,10 +27,10 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Header */
+/* Header (fixé en haut) */
 .navbar {
     background-color: #131921;
-    padding: 20px 30px;
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,11 +38,16 @@ html {
     top: 0;
     z-index: 1000;
     width: 100%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar:hover {
+    background-color: #0d0f12; /* Couleur plus foncée au survol */
 }
 
 .navbar .logo {
-    font-size: 1.9rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #FF9900;
     text-transform: uppercase;
@@ -64,12 +70,12 @@ html {
 }
 
 .navbar .menu a {
-    font-size: 15px;
+    font-size: 16px;
     text-decoration: none;
     color: white;
-    margin-left: 25px;
+    margin-left: 30px;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 6px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -85,14 +91,22 @@ html {
     align-items: center;
     background-color: white;
     border-radius: 50px;
-    padding: 12px 20px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    max-width: 500px;
+    margin-top: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-bar:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar input {
     border: 1px solid #ddd;
     border-radius: 25px;
-    padding: 12px 20px;
+    padding: 10px 15px;
     font-size: 14px;
     width: 70%;
     outline: none;
@@ -105,7 +119,7 @@ html {
 
 .search-bar button {
     background-color: #FF9900;
-    padding: 12px 20px;
+    padding: 10px 15px;
     border: none;
     color: white;
     font-size: 14px;
@@ -126,10 +140,11 @@ html {
 
 h2 {
     text-align: center;
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
     color: #333;
+    letter-spacing: 1px;
 }
 
 /* Conteneur des cartes d'événements */
@@ -137,6 +152,7 @@ h2 {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 30px;
+    margin-top: 40px;
 }
 
 @media (min-width: 640px) {
@@ -161,13 +177,14 @@ h2 {
 .bg-white {
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 25px;
     transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .bg-white:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .relative {
@@ -176,9 +193,9 @@ h2 {
 
 img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .absolute {
@@ -187,58 +204,29 @@ img {
     left: 16px;
     background-color: #1d4ed8;
     color: white;
-    padding: 6px 12px;
-    border-radius: 16px;
+    padding: 8px 15px;
+    border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 600;
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #333;
-    margin-top: 15px;
+    margin-top: 20px;
+    transition: color 0.3s ease;
+}
+
+h3:hover {
+    color: #FF9900;
 }
 
 p {
     font-size: 0.875rem;
     color: #666;
     margin: 10px 0;
-}
-
-.text-sm {
-    font-size: 0.875rem;
-    color: #999;
-}
-
-.mt-4 {
-    margin-top: 1rem;
-}
-
-.text-blue-600,
-.text-blue-800 {
-    color: #1e3a8a;
-}
-
-.text-red-600,
-.text-red-800 {
-    color: #dc2626;
-}
-
-.font-semibold {
-    font-weight: 600;
-}
-
-.hover\:scale-105:hover {
-    transform: scale(1.05);
-}
-
-.transition-transform {
-    transition: transform 0.3s ease-in-out;
-}
-
-.transition-colors {
-    transition: color 0.3s ease, background-color 0.3s ease;
+    line-height: 1.5;
 }
 
 /* Footer */
@@ -268,8 +256,8 @@ p {
 }
 
 .footer .socials i {
-    font-size: 24px;
-    margin: 0 15px;
+    font-size: 28px;
+    margin: 0 20px;
     color: #fff;
     transition: color 0.3s ease;
 }
@@ -281,12 +269,14 @@ p {
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar .menu a {
-        font-size: 13px;
-        margin-left: 15px;
+        font-size: 14px;
+        margin-left: 20px;
     }
 
     .search-bar {
         flex-direction: column;
+        width: 80%;
+        margin: 20px auto;
     }
 
     .search-bar input {

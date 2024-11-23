@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Mettre à jour un evenement
+Mettre à jour un événement
 {% endblock %}
 
-{% block content %}>
-<body>
-    <h1>Update Event: {{ event.title }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update Event</button>
-    </form>
-</body>
+{% block content %}
+<h1>Mettre à jour l'événement : {{ event.title }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Mettre à jour l'événement</button>
+</form>
 {% endblock %}

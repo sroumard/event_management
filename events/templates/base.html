@@ -14,12 +14,12 @@
   <!-- Navbar -->
   <header class="navbar">
       <div class="logo">
-          <a href="/">Site Web</a>
+          <a href="/">Events</a>
       </div>
       <nav class="menu">
           <a href="{% url 'home' %}">Accueil</a>
           <a href="{% url 'event_list' %}">Mes evenement</a>
-          <a href="signup">s'incrire</a>
+          <a href="{% url 'signup' %}">s'incrire</a>
           <a href="{% url 'login' %}" id="auth-action">Se connecter</a>
 
       </nav>
