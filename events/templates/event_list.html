@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Événements</title>
+</head>
+<body>
+    <h1>Liste des Événements</h1>
+
+    <!-- Formulaire pour filtrer les événements -->
+    <form method="get" class="filter-form">
+        <input type="text" name="title" placeholder="Rechercher par titre" value="{{ filters.title }}">
+        <input type="date" name="date" value="{{ filters.date }}">
+        <input type="text" name="location" placeholder="Rechercher par localisation" value="{{ filters.location }}">
+        <button type="submit">Filtrer</button>
+    </form>
+
+    <!-- Tableau des événements -->
+    <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Localisation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.title }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.date }}</td>
+                <td>{{ event.location }}</td>
+                <td>
+                    <a href="{% url 'update_event' event.id %}">Modifier</a> |
+                    <a href="{% url 'delete_event' event.id %}">Supprimer</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Aucun événement trouvé.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
