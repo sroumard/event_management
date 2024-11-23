@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.template import TemplateDoesNotExist
 from .models import CustomUser, Event
 from .forms import EventForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
@@ -67,14 +68,20 @@ def create_event(request):
             event = form.save(commit=False)
             event.organizer = request.user  # Associe l'utilisateur connecté comme organisateur
             event.save()
-            return redirect('home')  # Redirige après création
+            return redirect('event_list')  # Redirige après création
     else:
         form = EventForm()
     return render(request, 'create_event.html', {'form': form})
 
+from django.template.loader import get_template
 
 @login_required
 def event_list(request):
+    try:
+        template = get_template("events/event_list.html")
+        print("Template trouvé :", template)
+    except TemplateDoesNotExist as e:
+        print("Erreur :", e)
     # Récupération des filtres depuis la requête GET
     title_filter = request.GET.get('title', '')  # Mot-clé pour le titre
     date_filter = request.GET.get('date','' )
@@ -88,7 +95,7 @@ def event_list(request):
     if location_filter:
         events = events.filter(location__icontains=location_filter)  # Recherche partielle sur la localisation
     
-    return render(request, "events/event_list.html", {'events': events, 'filters': {
+    return render(request, "event_list.html", {'events': events, 'filters': {
             'title': title_filter,
             'date': date_filter,
             'location': location_filter,
@@ -106,7 +113,7 @@ def update_event(request, event_id):
             return redirect("event_list")
     else:
         form = EventForm(instance=event)  # Pré-remplir le formulaire avec les données actuelles
-    return render(request, "events/update_event.html", {'form': form})
+    return render(request, "update_event.html", {'form': form})
 
 
 @login_required
@@ -115,4 +122,4 @@ def delete_event(request, event_id):
     if request.method == 'POST':
         event.delete()
         return redirect("event_list")
-    return render(request, 'events/delete_event.html', {'event': event})
+    return render(request, 'delete_event.html', {'event': event})
