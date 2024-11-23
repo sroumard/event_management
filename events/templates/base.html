@@ -1,33 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     {% load static %}
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Mon Application: events{% endblock %}</title>
-  <!-- Lien vers le fichier CSS généré par TailwindCSS -->
-  <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Mon Application{% endblock %}</title>
+    <!-- Lien vers le fichier CSS externe -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-900">
-  <header  class="bg-blue-600 text-white p-4">
-    <nav class="container mx-auto flex justify-between items-center">
-      <ul class="flex space-x-4">
-        <li><a href="{% url 'home' %}" class="hover:underline">Accueil</a></li>
-        <li><a href="{% url 'signup' %}" class="hover:underline">S'inscrire</a></li>
-        <li><a href="{% url 'login' %}" class="hover:underline">Se connecter</a></li>
-        <li><a href="{% url 'logout' %}" class="hover:underline">Se déconnecter</a></li>
-      </ul>
-    </nav>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+      <div class="logo">
+          <a href="/">Site Web</a>
+      </div>
+      <nav class="menu">
+          <a href="{% url 'home' %}">Accueil</a>
+          <a href="{% url 'event_list' %}">Mes evenement</a>
+          <a href="signup">s'incrire</a>
+          <a href="{% url 'login' %}" id="auth-action">Se connecter</a>
+
+      </nav>
+      <div class="menu-burger">
+          <div></div>
+          <div></div>
+          <div></div>
+      </div>
   </header>
 
-  <main class="container mx-auto p-4">
-    {% block content %}
-    {% endblock %}
+  <!-- Contenu principal -->
+  <main>
+      {% block content %}
+      <!-- Le contenu spécifique de chaque page sera inséré ici -->
+      {% endblock %}
   </main>
 
-  <footer class="bg-gray-800 text-white text-center py-4 mt-8">
-    <p>&copy; 2024 Mon Application</p>
+  <!-- Footer -->
+  <footer>
+      <p>&copy; 2024 Site Web. Tous droits réservés.</p>
   </footer>
+
+  <!-- Scripts -->
+  <script src="{% static 'js/scripts.js' %}" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const authLink = document.getElementById('auth-action');
+        
+        // Vérifiez si l'utilisateur est connecté en utilisant la variable Django
+        const isAuthenticated = "{{ user.is_authenticated|yesno:'true,false' }}";  // Utilisation de la variable de contexte Django
+
+        if (isAuthenticated === "true") {
+            authLink.textContent = "Se déconnecter";
+            authLink.setAttribute('href', "{% url 'logout' %}");
+        } else {
+            authLink.textContent = "Se connecter";
+            authLink.setAttribute('href', "{% url 'login' %}");
+        }
+    });
+</script>
+
 </body>
+</html>
+</body>
+
 </html>

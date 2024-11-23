@@ -1,16 +1,30 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Supprimer un evenement
+Supprimer un événement
 {% endblock %}
 
-{% block content %}>
-<body>
-    <h1>Are you sure you want to delete "{{ event.title }}"?</h1>
-    <form method="post">
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+        Êtes-vous sûr de vouloir supprimer l'événement "{{ event.title }}" ?
+    </h1>
+
+    <!-- Formulaire de suppression -->
+    <form method="post" class="space-y-6">
         {% csrf_token %}
-        <button type="submit">Yes, Delete</button>
+
+        <!-- Bouton de suppression -->
+        <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500">
+            Oui, Supprimer
+        </button>
     </form>
-    <a href="{% url 'event_list' %}">Cancel</a>
-</body>
+
+    <!-- Lien pour annuler -->
+    <p class="mt-6 text-center text-gray-600">
+        <a href="{% url 'event_list' %}" class="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Annuler
+        </a>
+    </p>
+</div>
 {% endblock %}

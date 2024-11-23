@@ -1,22 +1,41 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Inscription
-{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block content %}
-<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mt-10"></div>
-<h2 class="text-2xl font-bold text-center mb-6">Créer un compte</h2>
+<div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <!-- Title -->
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Créer un compte</h2>
     
-<form method="post" class="space-y-4">
-    {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-            S'inscrire
-          </button>   
-         </form>
-         <p class="text-center mt-4">
-            Déjà inscrit ? <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Connectez-vous ici</a>
-          </p>
+    <!-- Form -->
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        <!-- Loop through form fields -->
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                {{ field.label }}
+            </label>
+            <div class="mt-1">
+                {{ field }}
+            </div>
+            {% if field.errors %}
+            <p class="text-sm text-red-500 mt-2">{{ field.errors }}</p>
+            {% endif %}
         </div>
+        {% endfor %}
+        
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+            S'inscrire
+        </button>
+    </form>
+
+    <!-- Link to Login -->
+    <p class="mt-6 text-center text-gray-600">
+        Déjà inscrit ? 
+        <a href="{% url 'login' %}" class="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500">Connectez-vous ici</a>
+    </p>
+</div>
 {% endblock %}

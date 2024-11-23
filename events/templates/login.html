@@ -1,20 +1,42 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Page de connection
-{% endblock %}
+{% block title %}Connexion{% endblock %}
 
-{% block content %}>
-<body>
-    <h2>Connexion</h2>
-    <form method = "post">
+{% block content %}
+<div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <!-- Title -->
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Connexion</h2>
+    
+    <!-- Form -->
+    <form method="post" class="space-y-6">
         {% csrf_token %}
-        <label for="username">Nom d'utilisateur</label>
-        <input type="text" name ="username" id = "username" required><br>
-        <label for="password">mot de passe</label>
-        <input type="password" name ="password" id = "password" required><br>
-        <button type = "submit"> Se connecter </button>   
+        <!-- Username Field -->
+        <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+            <input type="text" name="username" id="username" 
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+            <input type="password" name="password" id="password" 
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" 
+                class="w-full bg-blue-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-blue-700 transition-colors">
+            Se connecter
+        </button>
     </form>
-    <p>Pas encore de compte ? <a href="{% url 'signup' %}">Inscrivez vous ici</a></p>
-</body> 
+
+    <!-- Sign-up Link -->
+    <p class="mt-6 text-center text-gray-600">
+        Pas encore de compte ? 
+        <a href="{% url 'signup' %}" class="text-blue-600 hover:underline">Inscrivez-vous ici</a>
+    </p>
+</div>
 {% endblock %}
