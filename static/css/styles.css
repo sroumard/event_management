@@ -14,9 +14,9 @@ body {
     font-size: 14px;
     letter-spacing: 0.5px;
     display: flex;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center;    /* Centre verticalement */
     flex-direction: column;
+    justify-content: flex-start; /* Alignement en haut */
+    align-items: center;    /* Centre horizontalement */
     min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
